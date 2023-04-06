@@ -1,2 +1,29 @@
-<p>login works!</p>
-<button mat-raised-button color="primary" routerLink="/home">Primary</button>
+<div class="body">
+  <h1>Login</h1>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <mat-icon matPrefix>person</mat-icon>
+    <input
+      type="username"
+      matInput
+      placeholder="Bsp. max@mustermann.de"
+      [(ngModel)]="username"
+      (keyup.enter)="login()"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Passwort</mat-label>
+    <mat-icon matPrefix>key</mat-icon>
+    <input
+      type="password"
+      matInput
+      [(ngModel)]="password"
+      (keyup.enter)="login()"
+    />
+  </mat-form-field>
+  <div class="buttongroup">
+    <button mat-raised-button color="primary" routerLink="/home">
+      Anmelden
+    </button>
+  </div>
+</div>

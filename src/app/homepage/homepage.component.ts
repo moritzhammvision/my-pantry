@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { IngredientService } from '../ingredient.service';
 
 export interface PeriodicElement {
   name: string;
@@ -26,8 +27,12 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss'],
 })
-export class HomepageComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+export class HomepageComponent implements OnInit {
+  constructor(public ingredientService: IngredientService) {}
+  ngOnInit(): void {
+    this.ingredientService.findIngredients();
+  }
+  displayedColumns: string[] = ['id', 'name', 'unit'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   applyFilter(event: Event) {

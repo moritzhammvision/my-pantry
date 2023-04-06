@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -6,6 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  username = 'moritz.hamm@vc-g.de';
+  password: string = '';
+
   login() {
     // findSportTeams(sportId: number) {
     //   this.activeteamlist.length = 0;
