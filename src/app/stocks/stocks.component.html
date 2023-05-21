@@ -1,0 +1,85 @@
+<!-- <mat-form-field class="filterbox">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input />
+</mat-form-field> -->
+
+
+<div class="body">
+    <h1>Stocks</h1>
+    <div class="tablebox">
+      <table
+        mat-table
+        [dataSource]="this.stockService.stockDataSource"
+        class="mat-elevation-z8"
+      >
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>Id</th>
+          <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.ingredientname }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef>Amount</th>
+          <td mat-cell *matCellDef="let element">{{ element.amount }}</td>
+        </ng-container>
+        <ng-container matColumnDef="user">
+            <th mat-header-cell *matHeaderCellDef>User</th>
+            <td mat-cell *matCellDef="let element">{{ element.userid }}</td>
+          </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <!-- <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">
+        No data matching the filter "{{ input.value }}"
+      </td>
+    </tr> -->
+      </table>
+    </div>
+    <!-- <div class="formdiv">
+    <mat-form-field appearance="fill">
+        <mat-label>Select</mat-label>
+        <mat-select >
+           
+            <mat-option value="one">Second option</mat-option>
+                <mat-option value="two">Second option</mat-option>
+           
+            
+          
+        </mat-select>
+      </mat-form-field>
+    </div>  -->
+
+    <select id="ingredient_choice">
+        <option *ngFor="let element of this.ingredientService.ingredientList ">
+          {{ element.name }}
+        </option>
+      </select>
+      <input id="amount_choice" value=1 type="number">
+      <button mat-button (click)="this.stockService.createStock()">
+        ADD
+      </button>  
+
+
+
+
+
+<!-- <div *ngFor="let key of Object.keys(myObj)"> 
+    <p>Key-> {{key}} and value is ->{{myObj[key]}} </p> 
+    
+
+  </div>  -->
+  <!-- 
+  <p>{{this.ingredientService.ingredientDataSource.data[1]}} </p> -->
+  <p>test</p>
+ <!--  <div *ngFor="let test of this.ingredientService.ingredientDataSource.data: I ;index as i;">
+    
+    <p>{{test}}</p>
+  </div>
+</div> -->
