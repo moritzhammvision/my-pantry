@@ -1,4 +1,4 @@
-export interface stock {
+export interface shopping {
     id?: number;
     amount: number;
     userid:number;

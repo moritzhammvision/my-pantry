@@ -1,26 +1,33 @@
 import { Component , OnInit} from '@angular/core';
-import { StockService } from '../stock.service';
+import { shoppingService } from '../shopping.service';
 import { IngredientService } from '../ingredient.service';
+import { Ingredient } from '../entities/ingredient';
+import { loginService } from '../login.service';
+
 
 @Component({
-  selector: 'app-shoppinglist',
+  selector: 'app-shopping',
   templateUrl: './shoppinglist.component.html',
   styleUrls: ['./shoppinglist.component.scss']
 })
-export class ShoppinglistComponent implements OnInit{
+export class shoppinglistComponent implements OnInit{
 
-  constructor(public stockService: StockService,public ingredientService: IngredientService) {}
+  
+  constructor(public shoppingService: shoppingService,public ingredientService: IngredientService) {}
+
   ngOnInit(): void {
-    this.stockService.findStock();
+    this.shoppingService.findshopping();
     this.ingredientService.findIngredients();
+    
   }
-  displayedColumns: string[] = ['id', 'name', 'amount','user'];
+
+  displayedColumns: string[] = ['name', 'amount','unit','delete'];
 
   
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.stockService.stockDataSource.filter = filterValue
+    this.shoppingService.shoppingDataSource.filter = filterValue
       .trim()
       .toLowerCase();
   }

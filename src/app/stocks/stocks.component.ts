@@ -2,7 +2,7 @@ import { Component , OnInit} from '@angular/core';
 import { StockService } from '../stock.service';
 import { IngredientService } from '../ingredient.service';
 import { Ingredient } from '../entities/ingredient';
-
+import { loginService } from '../login.service';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { Ingredient } from '../entities/ingredient';
 })
 export class StocksComponent implements OnInit{
 
- // myObj: Ingredient[] = [];
+
  
   
   
@@ -24,16 +24,10 @@ export class StocksComponent implements OnInit{
     
   }
 
-  displayedColumns: string[] = ['id', 'name', 'amount','user'];
+  displayedColumns: string[] = ['name', 'amount','unit','delete'];
 
   
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.stockService.stockDataSource.filter = filterValue
-      .trim()
-      .toLowerCase();
-  }
 }
 
 

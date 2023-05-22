@@ -11,6 +11,7 @@ export class IngredientService {
   ingredientDataSource = new MatTableDataSource();
 
   constructor() {}
+
   findRecipeIngredients(ingredientId: number) {
     this.ingredientList.length = 0;
     fetch(
@@ -34,30 +35,7 @@ export class IngredientService {
         this.ingredientDataSource.data = this.ingredientList;
       });
   }
-  /* returnIngredients() : any {
-    let myObj=Object;
-    this.ingredientList.length = 0;
-    fetch('http://localhost:1337/api/ingredients?populate=*', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
 
-        for (const ingredient of data.data) {
-          this.ingredientList.push({
-            id: ingredient.id,
-            name: ingredient.attributes.name,
-            unit: ingredient.attributes.unit,
-          });
-        }
-        return(this.ingredientList);
-
-      });
-      //return(this.ingredientList);
-    } */
   findIngredients() {
     this.ingredientList.length = 0;
     fetch('http://localhost:1337/api/ingredients?populate=*', {
@@ -76,7 +54,7 @@ export class IngredientService {
           });
         }
         this.ingredientDataSource.data = this.ingredientList;
-        
+        console.log(this.ingredientList);
       });
 
     fetch('http://localhost:1337/api/ingredients?populate=*', {
@@ -89,5 +67,29 @@ export class IngredientService {
       .then((data) => {
         console.log(data);
       });
+  }
+
+  findShoppinglist() {
+    this.ingredientList.length = 0;
+    fetch('http://localhost:1337/api/ingredients?populate=*', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        for (const ingredient of data.data) {
+          this.ingredientList.push({
+            id: ingredient.id,
+            name: ingredient.attributes.name,
+            unit: ingredient.attributes.unit,
+          });
+        }
+        this.ingredientDataSource.data = this.ingredientList;
+        console.log(this.ingredientList);
+      });
+
+    
   }
 }

@@ -5,66 +5,106 @@
 
 
 <div class="body">
-    <h1>Stocks</h1>
-    <div class="tablebox">
-      <table
-        mat-table
-        [dataSource]="this.stockService.stockDataSource"
-        class="mat-elevation-z8"
-      >
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef>Id</th>
-          <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-        </ng-container>
-  
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let element">{{ element.ingredientname }}</td>
-        </ng-container>
-  
-        <ng-container matColumnDef="amount">
-          <th mat-header-cell *matHeaderCellDef>Amount</th>
-          <td mat-cell *matCellDef="let element">{{ element.amount }}</td>
-        </ng-container>
-        <ng-container matColumnDef="user">
-            <th mat-header-cell *matHeaderCellDef>User</th>
-            <td mat-cell *matCellDef="let element">{{ element.userid }}</td>
-          </ng-container>
-  
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  
-        <!-- Row shown when there is no matching data. -->
-        <!-- <tr class="mat-row" *matNoDataRow>
+  <h1>Shopping List</h1>
+
+   <!-- <div class="add">
+
+    <select [(ngModel)]="shoppingService.ingredient_choice" >
+      <option *ngFor="let element of this.ingredientService.ingredientList " [value]="element.id">
+        {{ element.name }}
+      </option>
+    </select>
+
+
+    <input id="amount_choice" [(ngModel)]="shoppingService.amount_choice" name="amount">
+
+    <select [(ngModel)]="shoppingService.unit_choice" >
+      <option value="ml">ml</option>
+      <option value="g">g</option>
+      <option value="pieces">pcs</option>
+      
+    </select>
+
+    <button mat-button (click)="this.shoppingService.createshopping()">
+      ADD
+    </button>
+  </div> -->
+
+  <div class="formdiv">
+    <form class="add-form">
+      <mat-form-field appearance="fill">
+        <mat-label>Ingredient</mat-label>
+        <mat-select [(ngModel)]="shoppingService.ingredient_choice" name="ingredient">
+
+          <mat-option *ngFor="let element of this.ingredientService.ingredientList " [value]="element.id">
+            {{ element.name }}
+          </mat-option>
+        </mat-select>
+
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Amount</mat-label>
+        <input matInput [(ngModel)]="shoppingService.amount_choice" name="amount">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Unit</mat-label>
+        <mat-select [(ngModel)]="shoppingService.unit_choice" name="unit">
+
+          <mat-option value="ml">ml</mat-option>
+          <mat-option value="g">g</mat-option>
+          <mat-option value="pieces">pcs</mat-option>
+
+
+        </mat-select>
+      </mat-form-field>
+        <button mat-raised-button color="primary" (click)="this.shoppingService.createshopping()">ADD</button>
+    </form>
+  </div>
+
+
+  <div class="tablebox">
+    <table mat-table [dataSource]="this.shoppingService.shoppingDataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.ingredientname }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef>Amount</th>
+        <td mat-cell *matCellDef="let element">{{ element.amount }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="unit">
+        <th mat-header-cell *matHeaderCellDef>Unit</th>
+        <td mat-cell *matCellDef="let element">{{ element.unit }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="user">
+        <th mat-header-cell *matHeaderCellDef>User</th>
+        <td mat-cell *matCellDef="let element">{{ element.userid }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef>delete</th>
+        <td mat-cell *matCellDef="let element"><button mat-button
+            (click)="this.shoppingService.delete(element.id)">delete</button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <!-- <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell" colspan="4">
         No data matching the filter "{{ input.value }}"
       </td>
     </tr> -->
-      </table>
-    </div>
-    <!-- <div class="formdiv">
-    <mat-form-field appearance="fill">
-        <mat-label>Select</mat-label>
-        <mat-select >
-            <table
-                mat-table
-                [dataSource]="this.ingredientService.ingredientDataSource"
-                class="mat-elevation-z8"
-            >
-
-            <ng-container matColumnDef="name">
-                <td mat-cell *matCellDef="let element"> <mat-option  value={{element.name}}>{{element.name}}</mat-option></td>
-              </ng-container>
-
-                <mat-option value="two">Second option</mat-option>
-
-            </table>
-           
-            
-          
-        </mat-select>
-      </mat-form-field>
-    </div> -->
-
+    </table>
   </div>
-  

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { loginService } from '../login.service';
+import { member } from '../entities/member';
 
 @Component({
   selector: 'app-login',
@@ -6,10 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  username: string = '';
-  password: string = '';
 
-  login() {
-    //*To do: Login implementieren */
-  }
+  constructor(public loginService: loginService) {}
+
+  //x=this.loginService.login(); 
+  
+
+  
 }
