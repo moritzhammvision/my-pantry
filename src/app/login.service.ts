@@ -34,7 +34,7 @@ export class loginService {
             this.currentMember=data.data[0].id;
             localStorage.setItem('currentMember',data.data[0].id)
             console.log(this.currentMember);
-            //location.href = "./stocks";
+            location.href = "./stocks";
           }else{window.alert("wrong password please try again")}
         }
       })
@@ -80,55 +80,3 @@ export class loginService {
 
   }
 }
-  /* stockList: stock[] = [];
-stockDataSource = new MatTableDataSource();
-amount_choice: number = 1;
-ingredient_choice: any ;
-unit_choice:string ="pieces";
-
-constructor() {}
-//('http://localhost:1337/api/stocks?filters\[ingredient\][name][$contains]=bier&populate=*', 
-findStock():any {
-this.stockList.length = 0;
-fetch('http://localhost:1337/api/stocks?populate=*', {
-method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-})
-.then((response) => response.json())
-.then((data) => {
-for (const stock of data.data) {
-  this.stockList.push({
-    id: stock.id,
-    amount: stock.attributes.amount,
-    userid: stock.attributes.member.data.id,
-    ingredientname: stock.attributes.ingredient.data.attributes.name,
-    unit:stock.attributes.unit
-  });
-}
-this.stockDataSource.data = this.stockList;
-console.log(this.stockList);
-});
-}
-
- 
-
-createStock(){
-let amount = document.getElementById('ingredient_choice') as HTMLInputElement | null;
-//const value:number = amount?.value; 
- 
-fetch('http://localhost:1337/api/stocks', {
-method: 'POST',
-body: JSON.stringify({data: {amount : this.amount_choice, member: 1, ingredient: this.ingredient_choice, unit:this.unit_choice}}),
-headers: {
-    'Content-Type': 'application/json',
-  }
-})
-.then(res => res.json())
-.then(this.findStock())
- 
-
-}
-*/
-
